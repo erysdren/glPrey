@@ -38,9 +38,8 @@ SOFTWARE.
 #include <stdbool.h>
 
 /* sdl2 */
-#define SDL_MAIN_HANDLED
-#include <SDL.h>
-#include <SDL_opengl.h>
+#include "SDL.h"
+#include "SDL_opengl.h"
 
 /* gl */
 #include <GL/gl.h>

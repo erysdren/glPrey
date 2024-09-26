@@ -64,34 +64,7 @@ typedef struct
 	int height;
 	uint8_t *pixels;
 	char name[16];
-	int first_triangle;
-	int num_triangles;
 } gl_texture_t;
-
-/* gl mesh */
-typedef struct
-{
-	/* vertices */
-	vec3_t *vertices;
-	int num_vertices;
-
-	/* triangles */
-	vec3i_t *triangles;
-	int num_triangles;
-
-	/* texcoords */
-	vec2_t *texcoords;
-	int num_texcoords;
-
-	/* textures */
-	gl_texture_t *textures;
-	int num_textures;
-
-	/* buffer objects */
-	GLint vbo;
-	GLint ibo;
-
-} gl_mesh_t;
 
 /* pi */
 #ifndef M_PI
@@ -120,6 +93,5 @@ bool init(int w, int h, char *title);
 void quit(void);
 bool key(int sc);
 void *zalloc(size_t size);
-void draw_mesh(gl_mesh_t *mesh);
 
 #endif /* _BACKEND_H_ */
