@@ -30,6 +30,10 @@ if(LIBMATH)
 	target_link_libraries(glprey PRIVATE ${LIBMATH})
 endif()
 
+if(CMAKE_C_COMPILER_ID STREQUAL "TinyCC")
+	target_compile_definitions(glprey PUBLIC SDL_DISABLE_IMMINTRIN_H)
+endif()
+
 target_link_libraries(glprey PRIVATE SDL2::SDL2 OpenGL::GL OpenGL::GLU)
 
 # additional tools
