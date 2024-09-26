@@ -12,16 +12,16 @@ It requires two files from the Prey 1995 alpha: `DEMO4.BSP` and `MACT.WAD`. The 
 
 ## Building
 
-In a UNIX-like environment:
+Building is done through CMake.
 
-```
-cd glPrey/
+```bash
+mkdir cmake-build && cd cmake-build
+cmake ..
 make
 ```
 
 ## Notes
 
-- Only tested on Linux so far. Additional compatibility for Windows may be needed to build.
 - Texture mapping is not *quite* right, but it's close enough to look good.
 - Lightmaps are still a mystery.
 - If you happen to find any other BSPs or WADs from the Prey engine, you can specify them on the commandline with `--bsp` and `--wad`.
@@ -53,7 +53,7 @@ make
 - [ ] Lightmaps
 - [ ] Collision / gravity
 - [ ] Developer console
-- [ ] Windows support
+- [x] Windows support
 - [x] WAD extractor tool
 
 ## License
