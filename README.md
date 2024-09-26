@@ -60,7 +60,7 @@ make
 
 MIT License
 
-Copyright (c) 2023 erysdren (it/she/they)
+Copyright (c) 2023-2024 erysdren (it/she/they)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
