@@ -38,8 +38,7 @@ SOFTWARE.
 #include <stdbool.h>
 
 /* sdl2 */
-#include <SDL.h>
-#include <SDL_opengles2.h>
+#include "SDL.h"
 
 /* gl */
 #include <GL/gl.h>

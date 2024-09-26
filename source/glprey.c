@@ -39,7 +39,6 @@ SOFTWARE.
 
 /* sdl2 */
 #include "SDL.h"
-#include "SDL_opengl.h"
 
 /* gl */
 #include <GL/gl.h>
