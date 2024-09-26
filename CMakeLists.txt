@@ -12,6 +12,8 @@ find_package(OpenGL REQUIRED)
 
 find_library(LIBMATH m)
 
+# executable
+
 add_executable(glprey
 	${CMAKE_CURRENT_SOURCE_DIR}/source/backend.c
 	${CMAKE_CURRENT_SOURCE_DIR}/source/glprey.c
@@ -29,3 +31,20 @@ if(LIBMATH)
 endif()
 
 target_link_libraries(glprey PRIVATE SDL2::SDL2 OpenGL::GL OpenGL::GLU)
+
+# additional tools
+
+add_executable(bsp2ply
+	${CMAKE_CURRENT_SOURCE_DIR}/source/bsp.c
+	${CMAKE_CURRENT_SOURCE_DIR}/source/bsp2ply.c
+)
+
+add_executable(wad2png
+	${CMAKE_CURRENT_SOURCE_DIR}/source/mip.c
+	${CMAKE_CURRENT_SOURCE_DIR}/source/wad.c
+	${CMAKE_CURRENT_SOURCE_DIR}/source/wad2png.c
+)
+
+if(LIBMATH)
+	target_link_libraries(wad2png PRIVATE ${LIBMATH})
+endif()
