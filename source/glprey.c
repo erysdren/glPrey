@@ -37,8 +37,8 @@ SOFTWARE.
 #include <string.h>
 #include <stdbool.h>
 
-/* sdl2 */
-#include "SDL.h"
+/* sdl3 */
+#include <SDL3/SDL.h>
 
 /* gl */
 #include <GL/gl.h>
@@ -294,13 +294,13 @@ int main(int argc, char *argv[])
 	process_bsp(bsp);
 
 	/* start time */
-	time_last = SDL_GetTicks64();
+	time_last = SDL_GetTicks();
 
 	/* main loop */
 	while (frame())
 	{
 		/* current frame time */
-		time_current = SDL_GetTicks64();
+		time_current = SDL_GetTicks();
 		deltatime = (time_current - time_last) / 1000.0f;
 
 		/* inputs */

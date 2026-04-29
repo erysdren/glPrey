@@ -37,8 +37,8 @@ SOFTWARE.
 #include <string.h>
 #include <stdbool.h>
 
-/* sdl2 */
-#include "SDL.h"
+/* sdl3 */
+#include <SDL3/SDL.h>
 
 /* gl */
 #include <GL/gl.h>
@@ -56,7 +56,7 @@ SOFTWARE.
 /* sdl2 */
 SDL_Window *window;
 SDL_GLContext context;
-const Uint8 *keys;
+const bool *keys;
 
 /* gl */
 vec3_t m_pos;
@@ -135,7 +135,7 @@ void camera(float speed, float hfov)
 	float vfov;
 	float aspect;
 
-	SDL_GL_GetDrawableSize(window, &w, &h);
+	SDL_GetWindowSizeInPixels(window, &w, &h);
 
 	/* speed */
 	if (key(SDL_SCANCODE_LSHIFT))
@@ -250,12 +250,12 @@ bool frame(void)
 	{
 		switch (event.type)
 		{
-			case SDL_QUIT:
+			case SDL_EVENT_QUIT:
 				ret = false;
 				break;
 
-			case SDL_MOUSEBUTTONDOWN:
-				SDL_SetRelativeMouseMode(SDL_TRUE);
+			case SDL_EVENT_MOUSE_BUTTON_DOWN:
+				SDL_SetWindowRelativeMouseMode(window, true);
 				if (event.button.button == SDL_BUTTON_LEFT)
 					mb.x = 1;
 				else if (event.button.button == SDL_BUTTON_RIGHT)
@@ -264,8 +264,8 @@ bool frame(void)
 					mb.z = 1;
 				break;
 
-			case SDL_MOUSEBUTTONUP:
-				SDL_SetRelativeMouseMode(SDL_FALSE);
+			case SDL_EVENT_MOUSE_BUTTON_UP:
+				SDL_SetWindowRelativeMouseMode(window, false);
 				if (event.button.button == SDL_BUTTON_LEFT)
 					mb.x = 0;
 				else if (event.button.button == SDL_BUTTON_RIGHT)
@@ -274,7 +274,7 @@ bool frame(void)
 					mb.z = 0;
 				break;
 
-			case SDL_MOUSEMOTION:
+			case SDL_EVENT_MOUSE_MOTION:
 				mouse.x += event.motion.xrel;
 				mouse.y += event.motion.yrel;
 				break;
@@ -299,7 +299,7 @@ bool init(int w, int h, char *title)
 {
 	/* sdl */
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS);
-	window = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow(title, w, h, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN);
 	if (window == NULL) return false;
 
 	/* gl */
@@ -317,6 +317,9 @@ bool init(int w, int h, char *title)
 	glEnable(GL_DEPTH_TEST);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
+	/* show window now */
+	SDL_ShowWindow(window);
+
 	/* exit gracefully */
 	return true;
 }
@@ -328,7 +331,7 @@ bool init(int w, int h, char *title)
 void quit(void)
 {
 	SDL_DestroyWindow(window);
-	SDL_GL_DeleteContext(context);
+	SDL_GL_DestroyContext(context);
 	SDL_Quit();
 }
 

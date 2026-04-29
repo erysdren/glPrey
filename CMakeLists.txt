@@ -6,8 +6,7 @@ project(glPrey
 	VERSION 1.0.0
 )
 
-find_package(SDL2 REQUIRED CONFIG REQUIRED COMPONENTS SDL2)
-find_package(SDL2 REQUIRED CONFIG COMPONENTS SDL2main)
+find_package(SDL3 REQUIRED CONFIG REQUIRED COMPONENTS SDL3)
 find_package(OpenGL REQUIRED)
 
 find_library(LIBMATH m)
@@ -22,10 +21,6 @@ add_executable(glprey
 	${CMAKE_CURRENT_SOURCE_DIR}/source/mip.c
 )
 
-if(TARGET SDL2::SDL2main)
-	target_link_libraries(glprey PRIVATE SDL2::SDL2main)
-endif()
-
 if(LIBMATH)
 	target_link_libraries(glprey PRIVATE ${LIBMATH})
 endif()
@@ -34,7 +29,7 @@ if(CMAKE_C_COMPILER_ID STREQUAL "TinyCC")
 	target_compile_definitions(glprey PRIVATE SDL_DISABLE_IMMINTRIN_H)
 endif()
 
-target_link_libraries(glprey PRIVATE SDL2::SDL2 OpenGL::GL OpenGL::GLU)
+target_link_libraries(glprey PRIVATE SDL3::SDL3 OpenGL::GL OpenGL::GLU)
 
 # additional tools
 
