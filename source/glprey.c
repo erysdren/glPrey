@@ -284,8 +284,8 @@ int main(int argc, char *argv[])
 	init(640, 480, "glPrey");
 
 	/* print gl info */
-	fprintf(stderr, "%s\n", glGetString(GL_VERSION));
-	fprintf(stderr, "%s\n", glGetString(GL_RENDERER));
+	fprintf(stderr, "GL_VERSION: %s\n", glGetString(GL_VERSION));
+	fprintf(stderr, "GL_RENDERER: %s\n", glGetString(GL_RENDERER));
 
 	/* init wad */
 	process_wad(wad);
